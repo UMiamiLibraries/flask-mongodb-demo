@@ -95,7 +95,6 @@ fabric.properties
 instance/*
 !instance/.gitignore
 .webassets-cache
-.env
 
 ### Python template
 # Byte-compiled / optimized / DLL files

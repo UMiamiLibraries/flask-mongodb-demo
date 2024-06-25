@@ -176,3 +176,62 @@ Then, reinsert your data and check if the issue is resolved.
 Remember, always backup your data before performing operations that might lead to data loss.
 
 By following these steps, you should be able to troubleshoot most common issues with your Flask-MongoDB-Docker setup. If problems persist, consider checking your application code for any logic errors in database interactions.
+
+
+## 9. Resolving Conflicts with Local MongoDB Instances
+
+If you're experiencing a disconnect between MongoDB Compass and the data stored in your Docker container, you might have conflicting MongoDB instances running.
+
+### Symptoms:
+- Data visible in the Docker container is not visible in MongoDB Compass
+- Changes made in MongoDB Compass don't affect the data in the Docker container
+
+### Diagnosis:
+1. Check for running MongoDB processes:
+   ```bash
+   ps aux | grep mongod
+   ```
+   Look for multiple MongoDB instances, including one that might be installed locally (e.g., via Homebrew on macOS).
+
+2. Verify Docker container status:
+   ```bash
+   docker-compose ps
+   ```
+   Ensure your MongoDB container is running as expected.
+
+### Resolution:
+1. Stop any local MongoDB instances:
+   - On macOS with Homebrew:
+     ```bash
+     brew services stop mongodb-community
+     ```
+   - On other systems, use the appropriate service management command.
+
+2. Restart your Docker containers:
+   ```bash
+   docker-compose down
+   docker-compose up -d
+   ```
+
+3. In MongoDB Compass, ensure you're connecting to:
+   ```
+   mongodb://localhost:27017
+   ```
+
+4. If Compass was previously connected, disconnect and reconnect to ensure it's not using a cached connection.
+
+5. Verify the connection in Compass by looking for your expected databases and collections.
+
+6. In your Flask application, ensure you're connecting to:
+   ```python
+   client = MongoClient('mongodb://mongo:27017/')
+   ```
+   The hostname 'mongo' should resolve to the MongoDB container within the Docker network.
+
+### Prevention:
+- Be aware of any database services installed on your host machine.
+- Prefer running all services (including databases) in Docker containers when developing Docker-based applications.
+- Use different ports for Docker services and host services if you need to run both simultaneously.
+- Regularly check your running services and stop those that aren't needed.
+
+By following these steps, you should be able to resolve conflicts between local and containerized MongoDB instances, ensuring that both MongoDB Compass and your Flask application are connecting to the same MongoDB instance in your Docker container.

@@ -1,0 +1,37 @@
+[
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "isbn": "9780451524935",
+    "published_year": 1949,
+    "genre": "Dystopian Fiction"
+  },
+  {
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "isbn": "9780141439518",
+    "published_year": 1813,
+    "genre": "Classic Romance"
+  },
+  {
+    "title": "The Hitchhiker's Guide to the Galaxy",
+    "author": "Douglas Adams",
+    "isbn": "9780345391803",
+    "published_year": 1979,
+    "genre": "Science Fiction Comedy"
+  },
+  {
+    "title": "The Girl with the Dragon Tattoo",
+    "author": "Stieg Larsson",
+    "isbn": "9780307454546",
+    "published_year": 2005,
+    "genre": "Crime Thriller"
+  },
+  {
+    "title": "The Alchemist",
+    "author": "Paulo Coelho",
+    "isbn": "9780062315007",
+    "published_year": 1988,
+    "genre": "Philosophical Fiction"
+  }
+]

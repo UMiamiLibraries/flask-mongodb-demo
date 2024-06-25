@@ -22,10 +22,19 @@ The repo is broken up into version numbers so you can follow along at different 
 
 1. https://github.com/UMiamiLibraries/flask-mongodb-demo
 
+# Docker and Docker Compose
+Install Docker and Docker Compose
+
+https://www.docker.com/products/docker-desktop/
+
+# Mongo Compass
+Download and install MongoDB Compass
+
+https://www.mongodb.com/products/tools/compass
 
 ## Setup
 
-1. Clone the repo 
+### Clone the repo 
 
 1. **Create a directory named `Flask-Mongodb-Demo`**:
     ```bash
@@ -51,19 +60,27 @@ The repo is broken up into version numbers so you can follow along at different 
     ```bash
     git status
     ```
+6. **Fetch all tags**
+   ```bash
+   git fetch --all --tags
+   ```
 
-
-2. Install Docker and Docker Compose
-   2. https://www.docker.com/products/docker-desktop/
-3. Run `docker-compose up -d` to start the application
-4. Access the application at `http://localhost:5000`
+7. **(Optional) List all tags**
+    ```bash
+    git tag
+    ```
+8. **Checkout a specific tag and create a new branch**
+   ```bash
+   git checkout tags/v0.2 -b v0.2-branch
+   ```
+   
+### Using Docker
+1. Run `docker-compose up -d` to start the application
+2. Access the application at `http://localhost:5000`
 
 ## Using MongoDB Compass
-
-1. Download and install MongoDB Compass
-   2. https://www.mongodb.com/products/tools/compass
-2. Connect to `mongodb://localhost:27017`
-3. You can now view and manipulate the database using the GUI
+1. Connect to `mongodb://localhost:27017`
+2. You can now view and manipulate the database using the GUI
 
 ### Creating a Collection and Adding Data
 

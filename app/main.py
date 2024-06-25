@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from pymongo import MongoClient
 
 app = Flask(__name__)
@@ -8,14 +8,13 @@ db = client.library_db
 print(f"Connected to database: {db.name}")  # Add this line
 
 @app.route('/')
-def hello():
-    return "Hello, Librarians!"
+def home():
+    return render_template('home.html')
 
 @app.route('/books')
-def get_books():
+def books():
     books = list(db.books.find({}, {'_id': 0}))
-    print(f"Found {len(books)} books")  # Add this line
-    return jsonify(books)
+    return render_template('books.html', books=books)
 
 @app.route('/books/count')
 def get_book_count():

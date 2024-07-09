@@ -11,8 +11,15 @@ def create_app():
     client = MongoClient('mongodb://mongo:27017/')
     app.db = client.library_db
 
+    # Ensure output directory exists
+    output_dir = os.path.join(app.root_path, 'static', 'output')
+    os.makedirs(output_dir, exist_ok=True)
+
     from .books import books as books_blueprint
     app.register_blueprint(books_blueprint, url_prefix='/books')
+
+    from .image_processor import image_processor as image_processor_blueprint
+    app.register_blueprint(image_processor_blueprint, url_prefix='/image-processor')
 
     from .routes import main as main_blueprint
     app.register_blueprint(main_blueprint)

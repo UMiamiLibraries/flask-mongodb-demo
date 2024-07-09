@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Image Processing Results</h1>
+<ul>
+    {% for result in results %}
+    <li>{{ result }}</li>
+    {% endfor %}
+</ul>
+<a href="{{ url_for('image_processor.upload_image') }}" class="btn btn-primary">Process Another Image</a>
+{% endblock %}

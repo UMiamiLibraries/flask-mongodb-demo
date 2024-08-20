@@ -17,7 +17,7 @@ def process_image(image, sizes, title):
         img = img.resize((width, height), Image.LANCZOS)
 
         # Create slugified filename
-        filename = f"{slugify.slugify(title)}_{width}x{height}.webp"
+        filename = f"{slugify.slugify(title)}-{width}x{height}.webp"
 
         # Save the image
         output_path = os.path.join(output_directory, filename)

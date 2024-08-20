@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}AI Research Assistant{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">AI Research Assistant</h1>
+    
+    <form method="POST" action="{{ url_for('research_assistant.index') }}" class="mb-4">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.query.label(class="form-label") }}
+            {{ form.query(class="form-control") }}
+        </div>
+        {{ form.submit(class="btn btn-primary mt-2") }}
+    </form>
+
+    {% if results %}
+        <h2>Search Results</h2>
+        <div class="list-group">
+            {% for result in results %}
+                <div class="list-group-item">
+                    <h5 class="mb-1">{{ result.title }}</h5>
+                    <p class="mb-1">Author(s): {{ result.author }}</p>
+                    <p class="mb-1">Year: {{ result.year }}</p>
+                    {% if result.url != 'N/A' %}
+                        <a href="{{ result.url }}" target="_blank" class="btn btn-sm btn-outline-primary">View Publication</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

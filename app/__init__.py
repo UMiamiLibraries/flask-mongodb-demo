@@ -21,6 +21,9 @@ def create_app():
     from .image_processor import image_processor as image_processor_blueprint
     app.register_blueprint(image_processor_blueprint, url_prefix='/image-processor')
 
+    from .research_assistant import research_assistant as research_assistant_blueprint
+    app.register_blueprint(research_assistant_blueprint, url_prefix='/research-assistant')
+
     from .routes import main as main_blueprint
     app.register_blueprint(main_blueprint)
 

@@ -1,9 +1,11 @@
 {% extends "base.html" %}
-
 {% block content %}
+
 <h1>Image Processor</h1>
-<form method="POST" enctype="multipart/form-data">
+
+<form method="post" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
+
     <div class="mb-3">
         {{ form.title.label(class="form-label") }}
         {{ form.title(class="form-control") }}
@@ -11,6 +13,7 @@
         <span class="text-danger">{{ error }}</span>
         {% endfor %}
     </div>
+
     <div class="mb-3">
         {{ form.image.label(class="form-label") }}
         {{ form.image(class="form-control") }}
@@ -18,18 +21,99 @@
         <span class="text-danger">{{ error }}</span>
         {% endfor %}
     </div>
+
     <div class="mb-3">
-        {{ form.sizes.label(class="form-label") }}
-        {% for subfield in form.sizes %}
-        <div class="form-check">
-            {{ subfield(class="form-check-input") }}
-            {{ subfield.label(class="form-check-label") }}
+        <h4>{{ form.sizes.label(class="form-label") }}</h4>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col">
+                <h5>16:9 Aspect Ratio</h5>
+                {% for subfield in form.sizes if '16:9' in subfield.label.text %}
+                <div class="form-check">
+                    {{ subfield(class="form-check-input") }}
+                    {{ subfield.label(class="form-check-label") }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col">
+                <h5>1:1 Aspect Ratio</h5>
+                {% for subfield in form.sizes if '1:1' in subfield.label.text %}
+                <div class="form-check">
+                    {{ subfield(class="form-check-input") }}
+                    {{ subfield.label(class="form-check-label") }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col">
+                <h5>2:3 Aspect Ratio</h5>
+                {% for subfield in form.sizes if '2:3' in subfield.label.text %}
+                <div class="form-check">
+                    {{ subfield(class="form-check-input") }}
+                    {{ subfield.label(class="form-check-label") }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col">
+                <h5>9:16 Aspect Ratio</h5>
+                {% for subfield in form.sizes if '9:16' in subfield.label.text %}
+                <div class="form-check">
+                    {{ subfield(class="form-check-input") }}
+                    {{ subfield.label(class="form-check-label") }}
+                </div>
+                {% endfor %}
+            </div>
         </div>
-        {% endfor %}
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col">
+                <h5>3:2 Aspect Ratio</h5>
+                {% for subfield in form.sizes if '3:2' in subfield.label.text %}
+                <div class="form-check">
+                    {{ subfield(class="form-check-input") }}
+                    {{ subfield.label(class="form-check-label") }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col">
+                <h5>4:5 Aspect Ratio</h5>
+                {% for subfield in form.sizes if '4:5' in subfield.label.text %}
+                <div class="form-check">
+                    {{ subfield(class="form-check-input") }}
+                    {{ subfield.label(class="form-check-label") }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col">
+                <h5>5:4 Aspect Ratio</h5>
+                {% for subfield in form.sizes if '5:4' in subfield.label.text  %}
+                <div class="form-check">
+                    {{ subfield(class="form-check-input") }}
+                    {{ subfield.label(class="form-check-label") }}
+                </div>
+                {% endfor %}
+            </div>
+            {% set special_sizes = [
+            'Background Image (1920x1080)', 'Hero Image (1280x720)', 'Website Banner (250x250)',
+            'Blog Image (1200x630)', 'Logo Rectangle (250x100)', 'Logo Square (100x100)',
+            'Favicon (16x16)', 'Social Media Icons (32x32)', 'Lightbox Images (1600x500)',
+            'Thumbnail Image (150x150)'
+            ] %}
+            <div class="col">
+                <h5>Special Sizes</h5>
+                {% for subfield in form.sizes if subfield.label.text in special_sizes %}
+                <div class="form-check">
+                    {{ subfield(class="form-check-input") }}
+                    {{ subfield.label(class="form-check-label") }}
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
         {% for error in form.sizes.errors %}
         <span class="text-danger">{{ error }}</span>
         {% endfor %}
     </div>
+
     {{ form.submit(class="btn btn-primary") }}
 </form>
+
 {% endblock %}

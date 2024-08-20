@@ -258,3 +258,12 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+# Ignore the generated images in app/static/output
+app/static/output/*.jpg
+app/static/output/*.jpeg
+app/static/output/*.png
+app/static/output/*.gif
+app/static/output/*.bmp
+app/static/output/*.tiff
+app/static/output/*.svg
+app/static/output/*.webp

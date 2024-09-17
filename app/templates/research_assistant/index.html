@@ -1,34 +1,27 @@
 {% extends "base.html" %}
 
-{% block title %}AI Research Assistant{% endblock %}
-
 {% block content %}
-<div class="container mt-5">
-    <h1 class="mb-4">AI Research Assistant</h1>
-    
-    <form method="POST" action="{{ url_for('research_assistant.index') }}" class="mb-4">
-        {{ form.hidden_tag() }}
-        <div class="form-group">
-            {{ form.query.label(class="form-label") }}
-            {{ form.query(class="form-control") }}
-        </div>
-        {{ form.submit(class="btn btn-primary mt-2") }}
-    </form>
+<h1>Research Assistant</h1>
 
-    {% if results %}
-        <h2>Search Results</h2>
-        <div class="list-group">
-            {% for result in results %}
-                <div class="list-group-item">
-                    <h5 class="mb-1">{{ result.title }}</h5>
-                    <p class="mb-1">Author(s): {{ result.author }}</p>
-                    <p class="mb-1">Year: {{ result.year }}</p>
-                    {% if result.url != 'N/A' %}
-                        <a href="{{ result.url }}" target="_blank" class="btn btn-sm btn-outline-primary">View Publication</a>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-</div>
+<h2>Research Projects</h2>
+<a href="{{ url_for('research_assistant.new_project') }}" class="btn btn-primary">New Project</a>
+<ul>
+    {% for project in projects %}
+    <li>
+        <a href="{{ url_for('research_assistant.view_project', project_id=project._id) }}">{{ project.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>Scholar Search</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.query.label }}
+        {{ form.query(class="form-control") }}
+    </div>
+    <div>
+        {{ form.submit(class="btn btn-primary") }}
+    </div>
+</form>
 {% endblock %}

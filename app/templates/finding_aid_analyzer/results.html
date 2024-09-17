@@ -1,0 +1,17 @@
+# templates/finding_aid_analyzer/results.html
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Analysis Results</h1>
+<h2>Summary</h2>
+<p>{{ analysis.summary }}</p>
+<h2>Research Topics</h2>
+<ul>
+    {% for topic in analysis.research_topics %}
+    <li>{{ topic }}</li>
+    {% endfor %}
+</ul>
+<p>Education Level: {{ analysis.education_level }}</p>
+<p>Analyzed on: {{ analysis.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+<a href="{{ url_for('finding_aid_analyzer.upload_finding_aid') }}" class="btn btn-primary">Analyze Another Finding Aid</a>
+{% endblock %}

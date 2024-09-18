@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from .config import config
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='static', static_url_path='/static')
     app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', 'fallback-secret-key')
     app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, config['faa_pdf_upload_folder'])
     app.config['MAX_CONTENT_LENGTH'] = eval(config['faa_pdf_max_content_length'])
